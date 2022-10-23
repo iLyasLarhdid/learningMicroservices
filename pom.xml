@@ -11,6 +11,7 @@
   <modules>
     <module>customer</module>
       <module>fraud</module>
+    <module>eureka_server</module>
   </modules>
 
   <name>ilyServices</name>
@@ -22,6 +23,7 @@
     <maven.compiler.target>15</maven.compiler.target>
     <spring.boot.maven.plugin.version>2.6.7</spring.boot.maven.plugin.version>
     <spring.boot.maven.dependencies.version>2.6.7</spring.boot.maven.dependencies.version>
+    <spring.cloud.version>2021.0.3</spring.cloud.version>
   </properties>
 
   <!--dependencyManagement is just a declaration, and it does not really add a dependency.
@@ -34,6 +36,13 @@
         <version>${spring.boot.maven.dependencies.version}</version>
         <scope>import</scope>
         <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring.cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
