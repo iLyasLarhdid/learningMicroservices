@@ -1,5 +1,6 @@
 package com.larhdid.fraud;
 
+import com.larhdid.clients.fraud.FraudResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

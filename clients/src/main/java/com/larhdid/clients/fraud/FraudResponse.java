@@ -1,4 +1,4 @@
-package com.larhdid.fraud;
+package com.larhdid.clients.fraud;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
