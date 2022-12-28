@@ -7,20 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="customer" />
-        <module name="eureka_server" />
+        <module name="apigw" />
         <module name="notification" />
         <module name="clients" />
         <module name="fraud" />
+        <module name="amqp" />
+        <module name="eureka_server" />
+        <module name="customer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="clients" target="15" />
-      <module name="customer" target="15" />
-      <module name="eureka_server" target="15" />
-      <module name="fraud" target="15" />
-      <module name="ilyServices" target="15" />
-      <module name="notification" target="15" />
+      <module name="amqp" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>
