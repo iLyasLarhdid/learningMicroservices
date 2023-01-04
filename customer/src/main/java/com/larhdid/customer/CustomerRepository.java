@@ -1,4 +1,4 @@
-package com.larhdid;
+package com.larhdid.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

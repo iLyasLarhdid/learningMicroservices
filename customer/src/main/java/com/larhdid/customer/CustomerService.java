@@ -1,5 +1,6 @@
-package com.larhdid;
+package com.larhdid.customer;
 
+import com.larhdid.amqp.RabbitMqMessageProducer;
 import com.larhdid.clients.fraud.Fraud;
 import com.larhdid.clients.fraud.FraudResponse;
 import com.larhdid.clients.notification.Notification;
@@ -14,9 +15,8 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class CustomerService {
     private final CustomerRepository customerRepository;
-    private final RestTemplate restTemplate;
     private final Fraud fraud;
-    private final Notification notification;
+    private final RabbitMqMessageProducer mqMessageProducer;
 
     public Customer register(CustomerDto customerDto){
         Customer customer = Customer.builder().firstName(customerDto.getFirstName())
@@ -28,20 +28,14 @@ public class CustomerService {
         FraudResponse fraudResponse = fraud.isFraudster(customer.getId());
         //todo : check if email is valid and not taken
         if(fraudResponse.isFraudster()){
-            throw new IllegalStateException();
+            throw new IllegalStateException("Fraudster");
         }
-        NotificationResponse notificationResponse = notification
-                .sendNotification(
-                        NotificationResponse
-                                .builder()
-                                .customerId(customer.getId())
-                                .message(
-                                        String.format(
-                                                "hi %s %s welcome to our microservices",
-                                                customer.getLastName(),
-                                                customer.getFirstName()))
-                                .build());
-        log.info("notification has been sent {}",notificationResponse);
+        NotificationResponse notificationResponse = new NotificationResponse(false, customer.getId(), String.format("hi %s %s welcome to our microservices", customer.getLastName(), customer.getFirstName()));
+
+        //notification.sendNotification(notificationResponse);
+
+        mqMessageProducer.publish(notificationResponse,"internal.exchange","internal.notification.routing-key");
+
         return customer;
     }
 }

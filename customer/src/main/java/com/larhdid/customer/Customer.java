@@ -1,4 +1,4 @@
-package com.larhdid;
+package com.larhdid.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

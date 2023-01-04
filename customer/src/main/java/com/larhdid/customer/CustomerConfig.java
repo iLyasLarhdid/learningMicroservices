@@ -1,4 +1,4 @@
-package com.larhdid;
+package com.larhdid.customer;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
